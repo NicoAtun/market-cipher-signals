@@ -17,6 +17,14 @@ describe("normalizeTimeframe", () => {
     expect(normalizeTimeframe("4h")).toBe("4h");
   });
 
+  it("maps TradingView 60 (minutes) to the intraday 4h bucket", () => {
+    expect(normalizeTimeframe("60")).toBe("4h");
+  });
+
+  it("maps '1h' to the intraday 4h bucket", () => {
+    expect(normalizeTimeframe("1h")).toBe("4h");
+  });
+
   it("maps '15m' to 15m", () => {
     expect(normalizeTimeframe("15m")).toBe("15m");
   });

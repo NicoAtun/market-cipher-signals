@@ -7,17 +7,11 @@ export type Priority = "very_high" | "high" | "medium_high" | "medium_low";
 /** Maps a timeframe string (case-insensitive) to a canonical Timeframe enum value */
 export function normalizeTimeframe(raw: string): Timeframe {
   const t = raw.toLowerCase().trim();
-  if (t === "15" || t === "15m" || t === "15min") return "15m";
-  if (t === "60" || t === "1h" || t === "4h" || t === "240") {
-    // TradingView sends interval as minutes: 240 = 4h
-    if (t === "240" || t === "4h") return "4h";
-  }
+  if (["15", "15m", "15min", "15mins", "15minute", "15minutes"].includes(t)) return "15m";
+  if (["60", "1h", "1hr", "1hour", "4h", "4hr", "4hour", "240"].includes(t)) return "4h";
   if (t === "d" || t === "1d" || t === "daily" || t === "day") return "daily";
   if (t === "w" || t === "1w" || t === "weekly" || t === "week") return "weekly";
   if (t === "m" || t === "1m" || t === "monthly" || t === "month" || t === "30") return "monthly";
-  // TradingView numeric intervals
-  if (t === "15") return "15m";
-  if (t === "240") return "4h";
   return "daily"; // safe fallback
 }
 
