@@ -32,3 +32,9 @@
 - [x] Vitest: signal priority labeling logic
 - [x] Vitest: signals.list filter logic
 - [x] Save checkpoint
+
+## Phase 5: Signal Guide
+- [x] Build Market Cipher Signal Guide page with full indicator reference (WT, Money Flow, dots, divergences, timeframe bias)
+- [x] Register /guide route in App.tsx
+- [x] Add Guide link to RetroSidebar navigation
+- [x] Save checkpoint and publish

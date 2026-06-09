@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import SignalHistory from "./pages/SignalHistory";
 import SignalDetail from "./pages/SignalDetail";
 import WebhookSettings from "./pages/WebhookSettings";
+import SignalGuide from "./pages/SignalGuide";
 import Login from "./pages/Login";
 import ProtectedLayout from "./components/ProtectedLayout";
 
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/history" component={() => <ProtectedLayout><SignalHistory /></ProtectedLayout>} />
       <Route path="/signals/:id" component={() => <ProtectedLayout><SignalDetail /></ProtectedLayout>} />
       <Route path="/settings/webhook" component={() => <ProtectedLayout><WebhookSettings /></ProtectedLayout>} />
+      <Route path="/guide" component={() => <ProtectedLayout><SignalGuide /></ProtectedLayout>} />
       <Route component={NotFound} />
     </Switch>
   );

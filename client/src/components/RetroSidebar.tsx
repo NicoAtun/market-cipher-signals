@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const NAV_ITEMS = [
   { path: "/", label: "SIGNAL INBOX", code: "SIG::LIVE", icon: "⬡" },
   { path: "/history", label: "HISTORY", code: "SIG::LOG", icon: "◈" },
+  { path: "/guide", label: "SIGNAL GUIDE", code: "REF::MC_B", icon: "◧" },
   { path: "/settings/webhook", label: "WEBHOOK", code: "CFG::HOOK", icon: "◉" },
 ];
 
