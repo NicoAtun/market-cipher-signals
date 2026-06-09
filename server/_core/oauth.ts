@@ -36,8 +36,10 @@ export function registerOAuthRoutes(app: Express) {
         lastSignedIn: new Date(),
       });
 
+      // Ensure name is always non-empty — verifySession requires isNonEmptyString(name)
+      const displayName = userInfo.name?.trim() || userInfo.email?.split("@")[0] || "operator";
       const sessionToken = await sdk.createSessionToken(userInfo.openId, {
-        name: userInfo.name || "",
+        name: displayName,
         expiresInMs: ONE_YEAR_MS,
       });
 
