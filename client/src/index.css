@@ -1,13 +1,69 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap");
+
+/* ─── Design Tokens ────────────────────────────────────────────────────────── */
 @custom-variant dark (&:is(.dark *));
 
+:root {
+  /* Core palette */
+  --black: #000000;
+  --deep-black: #030303;
+  --surface: #0a0a0a;
+  --surface-2: #111111;
+  --surface-3: #1a1a1a;
+  --border: #222222;
+  --border-bright: #333333;
+
+  /* Neon accents */
+  --cyan: #00ffff;
+  --cyan-dim: #00cccc;
+  --cyan-muted: #004444;
+  --magenta: #ff00ff;
+  --magenta-dim: #cc00cc;
+  --magenta-muted: #440044;
+  --green: #00ff41;
+  --green-dim: #00cc33;
+  --red: #ff0040;
+  --red-dim: #cc0033;
+  --amber: #ffaa00;
+  --amber-dim: #cc8800;
+  --white: #ffffff;
+  --off-white: #e0e0e0;
+  --gray: #666666;
+  --gray-dim: #444444;
+
+  /* Typography */
+  --font-mono: "Share Tech Mono", "Courier New", monospace;
+  --font-display: "Orbitron", "Arial Black", sans-serif;
+  --font-body: "Rajdhani", "Arial", sans-serif;
+
+  /* Tailwind semantic mappings */
+  --background: var(--deep-black);
+  --foreground: var(--off-white);
+  --card: var(--surface);
+  --card-foreground: var(--off-white);
+  --popover: var(--surface-2);
+  --popover-foreground: var(--off-white);
+  --primary: var(--cyan);
+  --primary-foreground: var(--black);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--off-white);
+  --muted: var(--surface-3);
+  --muted-foreground: var(--gray);
+  --accent: var(--cyan-muted);
+  --accent-foreground: var(--cyan);
+  --destructive: var(--red);
+  --destructive-foreground: var(--white);
+  --border: var(--border);
+  --input: var(--surface-2);
+  --ring: var(--cyan);
+  --radius: 0px;
+}
+
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -27,151 +83,253 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
-:root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
-
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
-}
-
+/* ─── Base Reset ────────────────────────────────────────────────────────────── */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    box-sizing: border-box;
   }
+
+  html {
+    background: var(--deep-black);
+    color: var(--off-white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    background: var(--deep-black);
+    color: var(--off-white);
+    min-height: 100vh;
+    overflow-x: hidden;
   }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
+
+  /* Scanline overlay on the entire page */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
   }
+
+  /* Vignette */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  code, pre, kbd {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background: var(--cyan-muted);
+    color: var(--cyan);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border-bright); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--cyan-dim); }
 }
 
-@layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
-    padding-right: 1rem;
-  }
+/* ─── Utility Classes ───────────────────────────────────────────────────────── */
 
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
+/* Chromatic aberration text effect */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.glitch-text::before {
+  color: var(--cyan);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-2px, 0);
+  opacity: 0.8;
+}
+.glitch-text::after {
+  color: var(--magenta);
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  transform: translate(2px, 0);
+  opacity: 0.8;
+}
 
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
-      padding-right: 1.5rem;
-    }
-  }
+/* Chromatic aberration on hover */
+.glitch-hover:hover {
+  text-shadow:
+    -2px 0 var(--cyan),
+    2px 0 var(--magenta);
+}
 
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
-  }
+/* Neon glow */
+.glow-cyan {
+  text-shadow: 0 0 8px var(--cyan), 0 0 20px var(--cyan-dim);
+}
+.glow-magenta {
+  text-shadow: 0 0 8px var(--magenta), 0 0 20px var(--magenta-dim);
+}
+.glow-green {
+  text-shadow: 0 0 8px var(--green), 0 0 20px var(--green-dim);
+}
+.glow-red {
+  text-shadow: 0 0 8px var(--red), 0 0 20px var(--red-dim);
+}
+
+/* Box glow */
+.box-glow-cyan {
+  box-shadow: 0 0 0 1px var(--cyan), 0 0 16px rgba(0, 255, 255, 0.15);
+}
+.box-glow-magenta {
+  box-shadow: 0 0 0 1px var(--magenta), 0 0 16px rgba(255, 0, 255, 0.15);
+}
+.box-glow-green {
+  box-shadow: 0 0 0 1px var(--green), 0 0 16px rgba(0, 255, 65, 0.15);
+}
+.box-glow-red {
+  box-shadow: 0 0 0 1px var(--red), 0 0 16px rgba(255, 0, 64, 0.15);
+}
+.box-glow-amber {
+  box-shadow: 0 0 0 1px var(--amber), 0 0 16px rgba(255, 170, 0, 0.15);
+}
+
+/* Geometric bracket corners */
+.bracket-corner {
+  position: relative;
+}
+.bracket-corner::before,
+.bracket-corner::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--cyan);
+  border-style: solid;
+}
+.bracket-corner::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.bracket-corner::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Digital noise flicker animation */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.85; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
+}
+
+@keyframes scanline-move {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { box-shadow: 0 0 0 1px var(--cyan), 0 0 8px rgba(0, 255, 255, 0.1); }
+  50% { box-shadow: 0 0 0 1px var(--cyan), 0 0 24px rgba(0, 255, 255, 0.3); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.flicker { animation: flicker 8s infinite; }
+.pulse-cyan { animation: pulse-cyan 3s ease-in-out infinite; }
+.blink { animation: blink 1s step-end infinite; }
+
+/* Monospace error code style */
+.error-code {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Panel / card base */
+.retro-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.retro-panel-bright {
+  background: var(--surface);
+  border: 1px solid var(--border-bright);
+  position: relative;
+}
+
+/* Separator line with neon glow */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--cyan), transparent);
+  opacity: 0.4;
+}
+.neon-divider-magenta {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--magenta), transparent);
+  opacity: 0.4;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Flex min-width fix */
+.flex {
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Button active press */
+button:active, [role="button"]:active {
+  transform: scale(0.97);
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
