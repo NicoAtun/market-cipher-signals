@@ -59,13 +59,20 @@ export function registerWebhookRoutes(app: Express) {
       const indicatorSource = String(body.indicator ?? body.source ?? "Market Cipher");
       const notes = body.notes ? String(body.notes) : null;
 
-      // Parse alert timestamp
+      // Parse alert timestamp — TradingView can send epoch seconds (number), epoch ms (number),
+      // or ISO 8601 string (e.g. "2026-06-09T17:13:38Z"). Normalise to epoch ms.
       let alertTimestamp: number | null = null;
-      if (body.timestamp) {
-        alertTimestamp = Number(body.timestamp);
-      } else if (body.time) {
-        const parsed = Date.parse(String(body.time));
-        if (!isNaN(parsed)) alertTimestamp = parsed;
+      const rawTs = body.timestamp ?? body.time;
+      if (rawTs !== undefined && rawTs !== null && rawTs !== "") {
+        const asNum = Number(rawTs);
+        if (!isNaN(asNum)) {
+          // If the number looks like epoch seconds (< year 3000 in seconds), convert to ms
+          alertTimestamp = asNum < 1e12 ? asNum * 1000 : asNum;
+        } else {
+          // Try ISO string parse
+          const parsed = Date.parse(String(rawTs));
+          if (!isNaN(parsed)) alertTimestamp = parsed;
+        }
       }
 
       // ── 3. Normalize & derive priority ──────────────────────────────────
@@ -82,10 +89,11 @@ export function registerWebhookRoutes(app: Express) {
         signalType,
         indicatorSource,
         exchange: exchange || "",
-        notes: notes ?? undefined,
+        notes: notes ?? null,
         priority,
         rawPayload: body,
-        alertTimestamp: alertTimestamp ?? undefined,
+        // Pass null explicitly so MySQL receives NULL, not NaN or undefined
+        alertTimestamp: (alertTimestamp !== null && !isNaN(alertTimestamp)) ? alertTimestamp : null,
       });
 
       // ── 5. Push notification to owner ───────────────────────────────────
